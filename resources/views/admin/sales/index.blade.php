@@ -23,7 +23,7 @@
     }">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             <!-- Revenue -->
-            <div class="bg-white p-6 rounded-2xl border border-stone-300 shadow-sm hover:shadow-md transition-shadow group">
+            <div class="bg-white p-6 rounded-2xl border border-stone-300 shadow-md hover:shadow-lg transition-shadow group">
                 <div class="flex items-center justify-between mb-6">
                     <div class="w-12 h-12 rounded-xl bg-stone-900 flex items-center justify-center text-amber-500 shadow-lg shadow-stone-200">
                         <i class="ri-money-dollar-box-line text-2xl"></i>
@@ -103,7 +103,7 @@
 
                 <!-- Export Menu -->
                 <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="flex items-center gap-2 px-4 py-2.5 bg-stone-900 text-white rounded-xl text-xs font-bold hover:bg-stone-800 transition-all shadow-lg shadow-stone-200">
+                    <button @click="open = !open" class="flex items-center gap-2 px-4 py-2.5 bg-stone-900 text-white rounded-xl text-xs font-bold hover:bg-stone-800 transition-all shadow-xl shadow-stone-200">
                         <i class="ri-download-line leading-none"></i>
                         Export
                         <i class="ri-arrow-down-s-line leading-none"></i>
@@ -160,11 +160,11 @@
             @endforeach
         </div>
 
-        <div class="bg-white rounded-2xl border border-stone-300 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-2xl border border-stone-300 shadow-md overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-stone-50/30">
+                        <tr class="bg-stone-100/50">
                             <th class="px-8 py-5 border-b border-stone-300 w-10">
                                 <input type="checkbox" class="rounded border-stone-300 text-amber-500 focus:ring-amber-500">
                             </th>
@@ -311,7 +311,7 @@
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 mb-8">
-                            <div class="p-4 bg-stone-50 rounded-xl border border-stone-300">
+                            <div class="p-4 bg-stone-100 rounded-xl border border-stone-300 shadow-sm">
                                 <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Customer</p>
                                 <p class="text-sm font-bold text-stone-900" x-text="order?.customer_name"></p>
                                 <p class="text-xs text-stone-500" x-text="order?.customer_email"></p>

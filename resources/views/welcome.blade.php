@@ -83,7 +83,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5 lg:gap-6">
             @foreach($products as $product)
-            <a class="group bg-white rounded-lg overflow-hidden cursor-pointer block" href="{{ route('product.show', $product->id) }}" data-discover="true">
+            <a class="group bg-white rounded-xl overflow-hidden cursor-pointer block border-2 border-stone-300 hover:border-amber-400 transition-all shadow-md" href="{{ route('product.show', $product->id) }}" data-discover="true">
                 <div class="relative w-full h-64 lg:h-72 overflow-hidden bg-stone-100">
                     <img alt="{{ $product->name }}" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="{{ $product->image_url }}" />
                     
@@ -174,13 +174,13 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             @foreach($reviews as $review)
-            <div class="bg-white rounded-lg p-7">
+            <div class="bg-white rounded-2xl p-7 border-2 border-stone-300 shadow-md transition-transform hover:-translate-y-1">
                 <div class="flex items-center gap-1 mb-4">
                     @for($i=0; $i<$review->rating; $i++)
                     <i class="ri-star-fill text-amber-400 text-sm"></i>
                     @endfor
                 </div>
-                <p class="text-gray-600 text-sm leading-relaxed mb-6 italic">“{{ $review->content }}”</p>
+                <p class="text-stone-600 text-sm leading-relaxed mb-6 italic border-l-2 border-amber-400 pl-4">“{{ $review->content }}”</p>
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
                         <img alt="{{ $review->customer_name }}" class="w-full h-full object-cover" src="{{ $review->avatar_url }}" />

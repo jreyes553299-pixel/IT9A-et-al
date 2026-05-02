@@ -57,7 +57,7 @@
             <form method="POST" action="{{ route('cart.update') }}">
                 @csrf
                 <!-- Table Header -->
-                <div class="hidden lg:grid grid-cols-12 gap-4 pb-3 border-b border-stone-200 text-xs font-bold tracking-widest uppercase text-gray-400 mb-2 items-center">
+                <div class="hidden lg:grid grid-cols-12 gap-4 pb-3 border-b-2 border-stone-300 text-xs font-bold tracking-widest uppercase text-gray-400 mb-2 items-center">
                     <div class="col-span-1 flex items-center justify-center">
                         <label class="flex items-center cursor-pointer">
                             <input class="w-4 h-4 accent-amber-500 cursor-pointer" type="checkbox" 
@@ -73,7 +73,7 @@
 
                 <!-- Cart Items -->
                 @foreach($cartItems as $item)
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-stone-100 items-center transition-all duration-200"
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 py-6 border-b border-stone-300 items-center transition-all duration-200"
                     :class="!selectedItems.includes('{{ $item->id }}') ? 'opacity-50 grayscale-[0.5]' : ''">
                     <div class="hidden lg:flex col-span-1 items-center justify-center">
                         <input class="w-4 h-4 accent-amber-500 cursor-pointer" type="checkbox" 
@@ -109,9 +109,9 @@
                     <div class="lg:col-span-2 flex lg:justify-center items-center gap-2">
                         <span class="lg:hidden text-xs text-gray-400 font-semibold uppercase">Qty:</span>
                         <div class="flex items-center">
-                            <button type="button" onclick="this.nextElementSibling.stepDown()" class="w-8 h-8 flex items-center justify-center border border-stone-200 rounded-l-md text-gray-600 hover:bg-stone-50"><i class="ri-subtract-line text-xs"></i></button>
-                            <input class="w-10 h-8 border-t border-b border-stone-200 text-center text-sm font-semibold text-gray-900 focus:outline-none" type="number" name="quantities[{{ $item->id }}]" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}">
-                            <button type="button" onclick="if(this.previousElementSibling.value < {{ $item->product->stock }}) this.previousElementSibling.stepUp()" class="w-8 h-8 flex items-center justify-center border border-stone-200 rounded-r-md text-gray-600 hover:bg-stone-50"><i class="ri-add-line text-xs"></i></button>
+                            <button type="button" onclick="this.nextElementSibling.stepDown()" class="w-8 h-8 flex items-center justify-center border border-stone-400 rounded-l-md text-gray-600 hover:bg-stone-50"><i class="ri-subtract-line text-xs"></i></button>
+                            <input class="w-10 h-8 border-t border-b border-stone-400 text-center text-sm font-semibold text-gray-900 focus:outline-none" type="number" name="quantities[{{ $item->id }}]" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}">
+                            <button type="button" onclick="if(this.previousElementSibling.value < {{ $item->product->stock }}) this.previousElementSibling.stepUp()" class="w-8 h-8 flex items-center justify-center border border-stone-400 rounded-r-md text-gray-600 hover:bg-stone-50"><i class="ri-add-line text-xs"></i></button>
                         </div>
                     </div>
                     <div class="lg:col-span-2 flex lg:justify-end items-center gap-2">
@@ -125,7 +125,7 @@
                     <a class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors" href="{{ url('/gallery') }}">
                         <i class="ri-arrow-left-line"></i> Continue Shopping
                     </a>
-                    <button type="submit" class="inline-flex items-center gap-2 border border-stone-300 text-gray-700 font-semibold text-sm px-6 py-2.5 rounded-md hover:bg-stone-50 transition-colors whitespace-nowrap cursor-pointer">
+                    <button type="submit" class="inline-flex items-center gap-2 border-2 border-stone-400 text-gray-700 font-semibold text-sm px-6 py-2.5 rounded-md hover:bg-stone-50 transition-colors whitespace-nowrap cursor-pointer">
                         <i class="ri-refresh-line"></i> Update Cart
                     </button>
                 </div>
@@ -160,7 +160,7 @@
                     </template>
                 </div>
 
-                <div class="space-y-3 mb-6 border-t border-stone-200 pt-4">
+                <div class="space-y-3 mb-6 border-t-2 border-stone-300 pt-4">
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-500">Subtotal (<span x-text="selectedCount"></span> items)</span>
                         <span class="font-semibold text-gray-900" x-text="'$' + subtotal.toFixed(2)"></span>
@@ -169,7 +169,7 @@
                         <span class="text-gray-500">Shipping</span>
                         <span class="font-semibold text-green-600 uppercase">FREE</span>
                     </div>
-                    <div class="border-t border-stone-200 pt-3 flex justify-between items-center">
+                    <div class="border-t border-stone-300 pt-3 flex justify-between items-center">
                         <span class="font-bold text-gray-900">Grand Total</span>
                         <span class="font-bold text-xl text-gray-900" x-text="'$' + grandTotal.toFixed(2)"></span>
                     </div>
@@ -178,7 +178,7 @@
                 <div class="mb-6">
                     <label class="block text-[10px] font-bold tracking-widest uppercase text-gray-500 mb-2">PROMO CODE</label>
                     <div class="flex gap-2">
-                        <input type="text" placeholder="Enter code" class="w-full bg-white border border-stone-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+                        <input type="text" placeholder="Enter code" class="w-full bg-white border border-stone-400 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
                         <button type="button" class="bg-stone-900 hover:bg-stone-800 text-white font-semibold text-sm px-4 py-2 rounded-md transition-colors">
                             Apply
                         </button>

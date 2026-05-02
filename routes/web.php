@@ -28,7 +28,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::post('/logout', function () {
+Route::match(['get', 'post'], '/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
     request()->session()->regenerateToken();
@@ -38,6 +38,8 @@ Route::post('/logout', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/account', [AccountController::class, 'index'])->name('account');
     Route::put('/account/address', [AccountController::class, 'updateAddress'])->name('account.address');
+    Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile');
+    Route::put('/account/security', [AccountController::class, 'updateSecurity'])->name('account.security');
     
     Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');

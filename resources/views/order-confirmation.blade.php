@@ -81,7 +81,6 @@
                                         <span class="px-2 py-0.5 status-badge rounded text-[10px] font-bold">Size: M</span>
                                         <span class="px-2 py-0.5 status-badge rounded text-[10px] font-bold">Obsidian Black</span>
                                     </div>
-                                    <p class="text-[10px] text-gray-400 font-medium uppercase tracking-tighter mt-2">SKU: {{ $item->product->sku ?? 'MN-BLZ-001-M-BLK' }}</p>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-sm font-black text-gray-900">${{ number_format($item->price, 2) }}</p>

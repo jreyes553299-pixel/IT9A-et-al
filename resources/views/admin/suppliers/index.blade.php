@@ -31,7 +31,7 @@
     }">
         <!-- Top Metric Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+            <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-md transition-transform hover:scale-[1.02]">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center text-stone-500">
                         <i class="ri-truck-line text-xl"></i>
@@ -41,7 +41,7 @@
                 <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Total Suppliers</p>
                 <p class="text-2xl font-bold text-stone-900">{{ $metrics['total'] }}</p>
             </div>
-            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+            <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center text-stone-500">
                         <i class="ri-checkbox-circle-line text-xl"></i>
@@ -51,7 +51,7 @@
                 <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Active Partners</p>
                 <p class="text-2xl font-bold text-stone-900">{{ $metrics['active'] }}</p>
             </div>
-            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+            <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center text-stone-500">
                         <i class="ri-money-dollar-circle-line text-xl"></i>
@@ -61,7 +61,7 @@
                 <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Total Spend</p>
                 <p class="text-2xl font-bold text-stone-900">${{ number_format($metrics['total_spend'], 2) }}</p>
             </div>
-            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+            <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center text-stone-500">
                         <i class="ri-speed-up-line text-xl"></i>
@@ -76,7 +76,7 @@
         <!-- Filter Tabs -->
         <div class="flex flex-wrap items-center justify-between gap-6 mb-6">
             <div class="flex items-center gap-1 p-1 bg-stone-100 rounded-xl">
-                <button class="px-6 py-2 text-xs font-bold text-stone-900 bg-white rounded-lg shadow-sm transition-all">All
+                <button class="px-6 py-2 text-xs font-bold text-stone-900 bg-white rounded-lg shadow-md transition-all">All
                     Suppliers</button>
             </div>
             <div class="flex items-center gap-4">
@@ -87,11 +87,11 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl border border-stone-300 shadow-sm overflow-hidden">
-            <div class="px-8 py-6 border-b border-stone-100 flex items-center justify-between bg-stone-50/50">
+        <div class="bg-white rounded-2xl border-2 border-stone-300 shadow-md overflow-hidden">
+            <div class="px-8 py-6 border-b-2 border-stone-300 flex items-center justify-between bg-stone-50/50">
                 <div class="relative">
                     <input type="text" placeholder="Search vendor network..."
-                        class="pl-10 pr-4 py-2.5 bg-white border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-amber-500 w-80 transition-all">
+                        class="pl-10 pr-4 py-2.5 bg-white border-2 border-stone-300 rounded-xl text-xs focus:outline-none focus:border-amber-500 w-80 transition-all">
                     <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-stone-500"></i>
                 </div>
                 <button class="text-xs font-bold text-stone-500 hover:text-stone-900 flex items-center gap-2">
@@ -102,22 +102,22 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-stone-50/30">
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Supplier & Rating</th>
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Contact</th>
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Country & Tags</th>
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300 text-right">Total Spent</th>
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300 text-center">Status</th>
-                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300 text-right">Actions</th>
+                        <tr class="bg-stone-100/50">
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300">Supplier & Rating</th>
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300">Contact</th>
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300">Country & Tags</th>
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300 text-right">Total Spent</th>
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300 text-center">Status</th>
+                            <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b-2 border-stone-300 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-stone-100">
+                    <tbody class="divide-y divide-stone-300">
                         @forelse($suppliers as $item)
                             <tr class="hover:bg-amber-50/30 transition-colors group cursor-pointer"
                                 @click="openDetails({{ $item->id }})">
                                 <td class="px-8 py-5">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-10 h-10 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-500 group-hover:scale-110 transition-transform">
+                                        <div class="w-10 h-10 rounded-xl bg-stone-100 border-2 border-stone-300 flex items-center justify-center text-stone-500 group-hover:scale-110 transition-transform">
                                             <i class="ri-building-4-line text-xl"></i>
                                         </div>
                                         <div>
@@ -233,17 +233,17 @@
                         <div class="px-8 pb-8 space-y-8 flex-1">
                             <!-- Advanced Scorecards (orders, spend, lead time) -->
                             <div class="grid grid-cols-3 gap-3">
-                                <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center text-center border border-stone-200">
+                                <div class="bg-stone-100 rounded-xl p-4 flex flex-col items-center justify-center text-center border-2 border-stone-300 shadow-sm">
                                     <div class="text-amber-500 mb-2"><i class="ri-shopping-bag-3-line text-lg"></i></div>
                                     <p class="text-lg font-black text-stone-900 leading-none mb-1" x-text="supplier?.purchase_orders?.length || 0"></p>
                                     <p class="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Total Orders</p>
                                 </div>
-                                <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center text-center border border-stone-200">
+                                <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center text-center border-2 border-stone-300">
                                     <div class="text-amber-500 mb-2"><i class="ri-money-dollar-circle-line text-lg"></i></div>
                                     <p class="text-lg font-black text-stone-900 leading-none mb-1" x-text="'$' + (Number(supplier?.total_spent) >= 1000 ? (Number(supplier?.total_spent)/1000).toFixed(0) + 'k' : (Number(supplier?.total_spent)||0))"></p>
                                     <p class="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Total Spend</p>
                                 </div>
-                                <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center text-center border border-stone-200">
+                                <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center text-center border-2 border-stone-300">
                                     <div class="text-amber-500 mb-2"><i class="ri-timer-line text-lg"></i></div>
                                     <p class="text-lg font-black text-stone-900 leading-none mb-1" x-text="supplier?.lead_time ? parseInt(supplier.lead_time) + 'd' : 'N/A'"></p>
                                     <p class="text-[9px] font-bold text-stone-400 uppercase tracking-widest">Lead Time</p>
@@ -292,11 +292,11 @@
                             <div>
                                 <h4 class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-4">Commercial Terms</h4>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-stone-50 rounded-xl p-4 border border-stone-200">
+                                    <div class="bg-stone-50 rounded-xl p-4 border-2 border-stone-300">
                                         <p class="text-[10px] font-bold text-stone-400 mb-1">Payment Terms</p>
                                         <p class="text-sm font-bold text-stone-900" x-text="supplier?.payment_terms || 'N/A'"></p>
                                     </div>
-                                    <div class="bg-stone-50 rounded-xl p-4 border border-stone-200">
+                                    <div class="bg-stone-100 rounded-xl p-4 border-2 border-stone-300 shadow-sm">
                                         <p class="text-[10px] font-bold text-stone-400 mb-1">Lead Time</p>
                                         <p class="text-sm font-bold text-stone-900" x-text="supplier?.lead_time || 'N/A'"></p>
                                     </div>
@@ -306,7 +306,7 @@
                             <!-- Notes Section -->
                             <div x-show="supplier?.notes">
                                 <h4 class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-3">Internal Notes</h4>
-                                <div class="bg-amber-50/50 border border-amber-200 p-5 rounded-xl">
+                                <div class="bg-amber-50/50 border-2 border-amber-300 p-5 rounded-xl">
                                     <p class="text-sm font-medium text-amber-900 leading-relaxed" x-text="supplier?.notes"></p>
                                 </div>
                             </div>
@@ -316,7 +316,7 @@
                                 <h4 class="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-4">Recent Purchase Orders</h4>
                                 <div class="space-y-3">
                                     <template x-for="po in supplier?.purchase_orders || []" :key="po.id">
-                                        <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 flex items-center justify-between">
+                                        <div class="bg-stone-50 border-2 border-stone-300 rounded-xl p-4 flex items-center justify-between">
                                             <div>
                                                 <p class="text-xs font-bold text-stone-900 mb-1" x-text="po.po_number"></p>
                                                 <p class="text-[10px] font-medium text-stone-500" x-text="(po.order_date ? new Date(po.order_date).toLocaleDateString() : '')"></p>
@@ -335,8 +335,8 @@
                         </div>
 
                         <!-- Action Bar -->
-                        <div class="p-6 border-t border-stone-200 bg-white grid grid-cols-2 gap-4 mt-auto">
-                            <a :href="'mailto:' + supplier?.email" class="bg-stone-900 text-white py-3.5 rounded-xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 hover:bg-stone-800">
+                        <div class="p-6 border-t-2 border-stone-300 bg-white grid grid-cols-2 gap-4 mt-auto">
+                            <a :href="'mailto:' + supplier?.email" class="bg-stone-900 text-white py-3.5 rounded-xl text-xs font-bold transition-all shadow-xl flex items-center justify-center gap-2 hover:bg-stone-800">
                                 <i class="ri-mail-send-line text-lg"></i> Email Supplier
                             </a>
                             <a href="{{ route('admin.purchase-orders.create') }}" class="bg-white border border-stone-300 text-stone-900 py-3.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:bg-stone-50">

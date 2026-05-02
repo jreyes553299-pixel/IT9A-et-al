@@ -23,13 +23,13 @@
     }">
         <!-- Top Metric Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+            <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-md">
                 <div class="flex items-center justify-between mb-4">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center text-stone-500">
                         <i class="ri-box-3-line text-xl"></i>
                     </div>
                 </div>
-                <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Total SKU</p>
+                <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Total Products</p>
                 <p class="text-2xl font-bold text-stone-900">{{ $metrics['total'] }}</p>
             </div>
             <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
@@ -69,11 +69,11 @@
             </a>
         </div>
 
-        <div class="bg-white rounded-2xl border border-stone-300 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-2xl border border-stone-300 shadow-md overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-stone-50/30">
+                        <tr class="bg-stone-100/50">
                             <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Product</th>
                             <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Category</th>
                             <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Price</th>
@@ -81,12 +81,12 @@
                             <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-stone-100">
+                    <tbody class="divide-y divide-stone-300">
                         @forelse($products as $item)
                             <tr class="hover:bg-amber-50/30 transition-colors group cursor-pointer" @click="openDetails({{ $item->id }})">
                                 <td class="px-8 py-5">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-stone-100 overflow-hidden border border-stone-300 flex-shrink-0">
+                                        <div class="w-12 h-12 rounded-lg bg-stone-100 overflow-hidden border-2 border-stone-400">
                                             <img src="{{ $item->image_url }}" alt="" class="w-full h-full object-cover">
                                         </div>
                                         <div>
@@ -153,14 +153,14 @@
                             <h3 class="text-xl font-bold text-stone-900" x-text="product?.name"></h3>
                             <button @click="drawerOpen = false" class="text-stone-500 hover:text-stone-900"><i class="ri-close-line text-2xl"></i></button>
                         </div>
-                        <img :src="product?.image_url" class="w-full aspect-square object-cover rounded-2xl border border-stone-300 mb-8 shadow-lg">
+                        <img :src="product?.image_url" class="w-full aspect-square object-cover rounded-2xl border-2 border-stone-400">
                         <div class="space-y-6">
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="p-4 bg-stone-50 rounded-xl border border-stone-300">
+                                <div class="p-4 bg-stone-100 rounded-xl border-2 border-stone-400 shadow-md">
                                     <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Price</p>
                                     <p class="text-lg font-bold text-stone-900" x-text="'$' + Number(product?.price).toFixed(2)"></p>
                                 </div>
-                                <div class="p-4 bg-stone-50 rounded-xl border border-stone-300">
+                                <div class="p-4 bg-stone-50 rounded-xl border-2 border-stone-400 shadow-sm">
                                     <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest mb-1">Stock Level</p>
                                     <p class="text-lg font-bold text-stone-900" x-text="product?.stock"></p>
                                 </div>

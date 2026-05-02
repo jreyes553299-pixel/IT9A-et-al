@@ -7,6 +7,7 @@
 <div class="max-w-6xl mx-auto" x-data="{ 
     colors: [{ name: '', hex: '#000000' }],
     sizes: ['S', 'M', 'L'],
+    hasSizes: true,
     additional_images: [''],
     main_image_type: 'link', // 'link' or 'upload'
     addColor() { this.colors.push({ name: '', hex: '#000000' }) },
@@ -25,8 +26,8 @@
             <!-- Left Side: Main Details -->
             <div class="lg:col-span-2 space-y-8">
                 <!-- Basic Info -->
-                <div class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm space-y-6">
-                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b border-stone-50 pb-4 mb-6">Product Details</h3>
+                <div class="bg-white p-8 rounded-xl border-2 border-stone-300 shadow-sm space-y-6">
+                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b-2 border-stone-100 pb-4 mb-6">Product Details</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="md:col-span-2">
@@ -63,7 +64,7 @@
                 </div>
 
                 <!-- Attributes: Colors & Sizes -->
-                <div class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm space-y-8">
+                <div class="bg-white p-8 rounded-xl border-2 border-stone-300 shadow-sm space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <!-- Colors -->
                         <div>
@@ -89,13 +90,19 @@
                             </div>
                         </div>
 
-                        <!-- Sizes -->
                         <div>
-                            <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-6">Available Sizes</h3>
-                            <div class="flex flex-wrap gap-3">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest">Available Sizes</h3>
+                                <label class="relative inline-flex items-center cursor-pointer scale-90">
+                                    <input type="checkbox" x-model="hasSizes" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                                    <span class="ml-2 text-[10px] font-black text-stone-500 uppercase tracking-widest" x-text="hasSizes ? 'Enabled' : 'Disabled'"></span>
+                                </label>
+                            </div>
+                            <div class="flex flex-wrap gap-3 transition-opacity duration-300" :class="!hasSizes ? 'opacity-30 pointer-events-none' : ''">
                                 <template x-for="size in ['XS', 'S', 'M', 'L', 'XL', 'XXL']">
                                     <label class="cursor-pointer">
-                                        <input type="checkbox" name="sizes[]" :value="size" class="hidden peer" :checked="sizes.includes(size)">
+                                        <input type="checkbox" name="sizes[]" :value="size" class="hidden peer" :checked="sizes.includes(size)" :disabled="!hasSizes">
                                         <span class="w-12 h-12 flex items-center justify-center rounded-lg border border-stone-300 text-sm font-bold text-stone-500 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-600 transition-all">
                                             <span x-text="size"></span>
                                         </span>
@@ -107,7 +114,7 @@
                 </div>
 
                 <!-- Media -->
-                <div class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm space-y-6">
+                <div class="bg-white p-8 rounded-xl border-2 border-stone-300 shadow-sm space-y-6">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest">Product Gallery</h3>
                         <button type="button" @click="addImage()" class="text-xs font-bold text-amber-600 hover:text-amber-700 uppercase tracking-widest flex items-center gap-1">
@@ -175,8 +182,8 @@
             <!-- Right Side: Inventory & Pricing -->
             <div class="space-y-8">
                 <!-- Pricing -->
-                <div class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm space-y-6">
-                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b border-stone-50 pb-4 mb-6">Pricing</h3>
+                <div class="bg-white p-8 rounded-xl border-2 border-stone-300 shadow-sm space-y-6">
+                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b-2 border-stone-100 pb-4 mb-6">Pricing</h3>
                     
                     <div>
                         <label class="block text-xs font-bold text-stone-500 uppercase tracking-widest mb-2">Regular Price ($)</label>
@@ -203,8 +210,8 @@
                 </div>
 
                 <!-- Inventory -->
-                <div class="bg-white p-8 rounded-xl border border-stone-100 shadow-sm space-y-6">
-                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b border-stone-50 pb-4 mb-6">Inventory</h3>
+                <div class="bg-white p-8 rounded-xl border-2 border-stone-300 shadow-sm space-y-6">
+                    <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b-2 border-stone-100 pb-4 mb-6">Inventory</h3>
                     
                     <div>
                         <label class="block text-xs font-bold text-stone-500 uppercase tracking-widest mb-2">Supplier</label>

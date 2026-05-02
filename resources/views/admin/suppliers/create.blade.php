@@ -10,7 +10,7 @@
             <i class="ri-arrow-left-line"></i> Back to Network
         </a>
 
-        <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-xl border-2 border-stone-300 shadow-xl overflow-hidden">
             <form action="{{ route('admin.suppliers.store') }}" method="POST" class="p-8">
                 @csrf
 
@@ -22,7 +22,7 @@
                                 Name</label>
                             <input type="text" name="name" required value="{{ old('name') }}"
                                 placeholder="e.g. Maison Noir Global"
-                                class="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors">
+                                class="w-full bg-stone-50 border border-stone-400 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors">
                             @error('name') <p class="text-rose-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
@@ -73,7 +73,7 @@
                     </div>
 
                     <!-- Commercial Terms -->
-                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-stone-100">
+                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t-2 border-stone-200">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-stone-500 uppercase tracking-widest mb-2">Initial
@@ -116,11 +116,11 @@
                         <label class="block text-xs font-bold text-stone-500 uppercase tracking-widest mb-2">Internal
                             Procurement Notes</label>
                         <textarea name="notes" rows="4" placeholder="Any private details about this vendor..."
-                            class="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none">{{ old('notes') }}</textarea>
+                            class="w-full bg-stone-50 border border-stone-400 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-amber-500 transition-colors resize-none">{{ old('notes') }}</textarea>
                     </div>
                 </div>
 
-                <div class="mt-10 px-2 pt-6 border-t border-stone-100 flex items-center justify-end gap-12">
+                <div class="mt-10 px-2 pt-6 border-t-2 border-stone-200 flex items-center justify-end gap-12">
                     <a href="{{ route('admin.suppliers.index') }}"
                         class="px-6 py-3 text-sm font-bold text-stone-500 hover:text-stone-900 transition-colors">Cancel</a>
                     <button type="submit"

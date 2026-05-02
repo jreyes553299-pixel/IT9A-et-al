@@ -178,14 +178,6 @@
                         </div>
                     </form>
 
-                    <div class="mt-8 pt-6 border-t border-stone-100">
-                        <p class="text-xs text-gray-400 text-center mb-3">Admin access</p>
-                        <a class="w-full flex items-center justify-center gap-2 border border-stone-200 text-gray-600 font-semibold text-sm py-2.5 rounded-md hover:bg-stone-50 transition-colors whitespace-nowrap"
-                            href="#">
-                            <div class="w-4 h-4 flex items-center justify-center"><i
-                                    class="ri-shield-user-line text-amber-500"></i></div>Go to Admin Dashboard
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

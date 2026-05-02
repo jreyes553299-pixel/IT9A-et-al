@@ -7,6 +7,7 @@
 <div class="max-w-6xl mx-auto" x-data="{ 
     colors: {{ json_encode($product->colors ?? []) }},
     sizes: {{ json_encode($product->sizes ?? []) }},
+    hasSizes: {{ !empty($product->sizes) ? 'true' : 'false' }},
     additional_images: {{ json_encode($product->additional_images ?? []) }},
     main_image_type: '{{ str_starts_with($product->image_url, '/storage/') ? 'upload' : 'link' }}',
     addColor() { this.colors.push({ name: '', hex: '#000000' }) },
@@ -92,11 +93,18 @@
 
                         <!-- Sizes -->
                         <div>
-                            <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest mb-6">Available Sizes</h3>
-                            <div class="flex flex-wrap gap-3">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest">Available Sizes</h3>
+                                <label class="relative inline-flex items-center cursor-pointer scale-90">
+                                    <input type="checkbox" x-model="hasSizes" class="sr-only peer">
+                                    <div class="w-9 h-5 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-500"></div>
+                                    <span class="ml-2 text-[10px] font-black text-stone-500 uppercase tracking-widest" x-text="hasSizes ? 'Enabled' : 'Disabled'"></span>
+                                </label>
+                            </div>
+                            <div class="flex flex-wrap gap-3 transition-opacity duration-300" :class="!hasSizes ? 'opacity-30 pointer-events-none' : ''">
                                 <template x-for="size in ['XS', 'S', 'M', 'L', 'XL', 'XXL']">
                                     <label class="cursor-pointer">
-                                        <input type="checkbox" name="sizes[]" :value="size" class="hidden peer" :checked="sizes.includes(size)">
+                                        <input type="checkbox" name="sizes[]" :value="size" class="hidden peer" :checked="sizes.includes(size)" :disabled="!hasSizes">
                                         <span class="w-12 h-12 flex items-center justify-center rounded-lg border border-stone-300 text-sm font-bold text-stone-500 peer-checked:border-amber-500 peer-checked:bg-amber-50 peer-checked:text-amber-600 transition-all">
                                             <span x-text="size"></span>
                                         </span>

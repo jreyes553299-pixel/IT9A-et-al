@@ -38,9 +38,9 @@
                     <input type="hidden" name="category" value="{{ request('category') }}">
                     @endif
                     <div class="flex items-center gap-2">
-                        <input placeholder="Min" class="w-full border border-stone-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500" type="number" name="min_price" value="{{ request('min_price') }}">
+                        <input placeholder="Min" class="w-full border border-stone-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500" type="number" name="min_price" value="{{ request('min_price') }}">
                         <span class="text-gray-400 text-sm">–</span>
-                        <input placeholder="Max" class="w-full border border-stone-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500" type="number" name="max_price" value="{{ request('max_price') }}">
+                        <input placeholder="Max" class="w-full border border-stone-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500" type="number" name="max_price" value="{{ request('max_price') }}">
                     </div>
                     <button type="submit" class="w-full bg-stone-800 text-white text-sm font-semibold py-2 rounded-md hover:bg-stone-700 transition-colors cursor-pointer whitespace-nowrap">Apply Filter</button>
                 </form>
@@ -56,7 +56,7 @@
                         @foreach(request()->except('sort') as $key => $value)
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                         @endforeach
-                        <select name="sort" onchange="this.form.submit()" class="border border-stone-200 rounded-md px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-amber-500 cursor-pointer">
+                        <select name="sort" onchange="this.form.submit()" class="border border-stone-300 rounded-md px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-amber-500 cursor-pointer">
                             <option value="featured" {{ request('sort') == 'featured' ? 'selected' : '' }}>Featured</option>
                             <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Price: Low to High</option>
                             <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Price: High to Low</option>
@@ -68,7 +68,7 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
                 @forelse($products as $product)
-                <a class="group bg-white border border-stone-100 rounded-lg overflow-hidden hover:border-stone-200 transition-colors cursor-pointer block" href="{{ route('product.show', $product->id) }}">
+                <a class="group bg-white border-2 border-stone-300 shadow-md transition-all hover:border-amber-400" href="{{ route('product.show', $product->id) }}">
                     <div class="relative w-full h-64 overflow-hidden bg-stone-50">
                         <img alt="{{ $product->name }}" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="{{ $product->image_url }}">
                         @if($product->badge)
@@ -114,21 +114,21 @@
             @if($products->hasPages())
             <div class="flex items-center justify-center gap-2 mt-12">
                 @if($products->onFirstPage())
-                    <button disabled class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-200 text-gray-600 opacity-40 cursor-not-allowed transition-colors"><i class="ri-arrow-left-s-line"></i></button>
+                    <button disabled class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-300 text-gray-600 opacity-40 cursor-not-allowed transition-colors"><i class="ri-arrow-left-s-line"></i></button>
                 @else
-                    <a href="{{ $products->previousPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-200 text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-arrow-left-s-line"></i></a>
+                    <a href="{{ $products->previousPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-300 text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-arrow-left-s-line"></i></a>
                 @endif
 
                 @foreach($products->getUrlRange(1, $products->lastPage()) as $page => $url)
                     @if($page == $products->currentPage())
                         <button class="w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-stone-900 text-white">{{ $page }}</button>
                     @else
-                        <a href="{{ $url }}" class="w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-stone-200 text-gray-600 hover:bg-stone-50">{{ $page }}</a>
+                        <a href="{{ $url }}" class="w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-stone-300 text-gray-600 hover:bg-stone-50">{{ $page }}</a>
                     @endif
                 @endforeach
 
                 @if($products->hasMorePages())
-                    <a href="{{ $products->nextPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-200 text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-arrow-right-s-line"></i></a>
+                    <a href="{{ $products->nextPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-300 text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-arrow-right-s-line"></i></a>
                 @else
                     <button disabled class="w-9 h-9 flex items-center justify-center rounded-md border border-stone-200 text-gray-600 opacity-40 cursor-not-allowed transition-colors"><i class="ri-arrow-right-s-line"></i></a>
                 @endif

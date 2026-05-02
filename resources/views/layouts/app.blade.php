@@ -136,8 +136,12 @@
                             @click="open = !open"
                             class="flex items-center gap-3 transition-opacity hover:opacity-80 focus:outline-none"
                         >
-                            <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-stone-900 font-bold text-sm">
-                                {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}
+                            <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-stone-900 font-bold text-sm overflow-hidden border border-white/20">
+                                @if(Auth::user()->avatar)
+                                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="w-full h-full object-cover">
+                                @else
+                                    {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}
+                                @endif
                             </div>
                             <span class="text-sm font-medium transition-colors" :class="scrolled ? 'text-stone-900' : 'text-white'">
                                 {{ Auth::user()->email }}
@@ -150,10 +154,10 @@
                             x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"
                             x-transition:enter-end="transform opacity-100 scale-100"
-                            class="absolute right-0 top-full mt-3 w-64 bg-white rounded-xl shadow-2xl overflow-hidden z-50 border border-stone-100"
+                            class="absolute right-0 top-full mt-3 w-64 bg-white rounded-xl shadow-2xl overflow-hidden z-50 border-2 border-stone-300"
                             style="display: none;"
                         >
-                            <div class="px-5 py-4 border-b border-stone-50">
+                            <div class="px-5 py-4 border-b-2 border-stone-300">
                                 <p class="text-sm font-bold text-stone-900 leading-none mb-1">{{ Auth::user()->email }}</p>
                                 <p class="text-xs text-stone-400 mb-3">{{ Auth::user()->email }}</p>
                                 <span class="inline-block px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-wider rounded-full">
@@ -174,15 +178,9 @@
                                     </div>
                                     <span class="font-medium">My Orders</span>
                                 </a>
-                                <a href="{{ route('account') }}" class="group px-5 py-2.5 text-sm text-stone-700 hover:bg-stone-50 flex items-center gap-3 transition-colors">
-                                    <div class="w-8 h-8 flex items-center justify-center text-stone-400 group-hover:text-amber-500 transition-colors">
-                                        <i class="ri-heart-line text-lg"></i>
-                                    </div>
-                                    <span class="font-medium">Wishlist</span>
-                                </a>
                             </div>
 
-                            <div class="border-t border-stone-50 my-1"></div>
+                            <div class="border-t-2 border-stone-300 my-1"></div>
                             
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -225,10 +223,10 @@
                    <button @click="mobileMenuOpen = false" class="text-2xl"><i class="ri-close-line"></i></button>
                </div>
                <nav class="flex flex-col gap-6">
-                   <a href="{{ url('/') }}" class="text-xl font-medium border-b border-gray-100 pb-2">Home</a>
-                   <a href="{{ url('/gallery') }}" class="text-xl font-medium border-b border-gray-100 pb-2">Gallery</a>
-                   <a href="{{ url('/gallery?category=fashion') }}" class="text-xl font-medium border-b border-gray-100 pb-2">Fashion</a>
-                   <a href="{{ url('/gallery?category=tech') }}" class="text-xl font-medium border-b border-gray-100 pb-2">Tech</a>
+                   <a href="{{ url('/') }}" class="text-xl font-medium border-b-2 border-stone-300 pb-2">Home</a>
+                   <a href="{{ url('/gallery') }}" class="text-xl font-medium border-b-2 border-stone-300 pb-2">Gallery</a>
+                   <a href="{{ url('/gallery?category=fashion') }}" class="text-xl font-medium border-b-2 border-stone-300 pb-2">Fashion</a>
+                   <a href="{{ url('/gallery?category=tech') }}" class="text-xl font-medium border-b-2 border-stone-300 pb-2">Tech</a>
                </nav>
                 <div class="mt-auto flex flex-col gap-4">
                     @guest
@@ -469,7 +467,7 @@
               </div>
             </div>
           </div>
-          <div class="border-t border-stone-800 px-6 lg:px-12 xl:px-20 py-5">
+          <div class="border-t border-stone-600 px-6 lg:px-12 xl:px-20 py-5">
             <div
               class="flex flex-col sm:flex-row items-center justify-between gap-3"
             >

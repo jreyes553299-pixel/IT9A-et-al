@@ -6,7 +6,7 @@
 @section('content')
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <!-- Stat Card -->
-        <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+        <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-md transition-transform hover:scale-[1.02]">
             <div class="flex items-center justify-between mb-4">
                 <div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
                     <i class="ri-box-3-line text-2xl"></i>
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Stat Card -->
-        <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+        <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
             <div class="flex items-center justify-between mb-4">
                 <div class="w-12 h-12 rounded-lg bg-stone-50 flex items-center justify-center text-stone-600">
                     <i class="ri-truck-line text-2xl"></i>
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Stat Card -->
-        <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+        <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
             <div class="flex items-center justify-between mb-4">
                 <div class="w-12 h-12 rounded-lg bg-rose-50 flex items-center justify-center text-rose-600">
                     <i class="ri-error-warning-line text-2xl"></i>
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Stat Card -->
-        <div class="bg-white p-6 rounded-xl border border-stone-300 shadow-sm">
+        <div class="bg-white p-6 rounded-xl border-2 border-stone-300 shadow-sm transition-transform hover:scale-[1.02]">
             <div class="flex items-center justify-between mb-4">
                 <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
                     <i class="ri-shopping-cart-line text-2xl"></i>
@@ -56,8 +56,8 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Recent Activity -->
-        <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-stone-100 flex items-center justify-between bg-stone-50/50">
+        <div class="bg-white rounded-xl border-2 border-stone-300 shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b-2 border-stone-300 flex items-center justify-between bg-stone-50/50">
                 <h4 class="font-bold text-stone-900">Inventory Overview</h4>
                 <a href="{{ route('admin.inventory.index') }}" class="text-xs font-bold text-amber-600 hover:text-amber-700 uppercase tracking-widest">View
                     All</a>
@@ -65,9 +65,9 @@
             <div class="p-6">
                 @php $recentProducts = \App\Models\Product::latest()->limit(5)->get(); @endphp
                 @forelse($recentProducts as $p)
-                    <div class="flex items-center justify-between py-3 border-b border-stone-50 last:border-0">
+                    <div class="flex items-center justify-between py-3 border-b border-stone-200 last:border-0">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded bg-stone-100 overflow-hidden border border-stone-300">
+                            <div class="w-10 h-10 rounded bg-stone-100 overflow-hidden border-2 border-stone-300">
                                 <img src="{{ $p->image_url }}" class="w-full h-full object-cover">
                             </div>
                             <div>
@@ -89,34 +89,34 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-stone-100 bg-stone-50/50">
+        <div class="bg-white rounded-xl border-2 border-stone-300 shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b-2 border-stone-300 bg-stone-50/50">
                 <h4 class="font-bold text-stone-900">System Quick Actions</h4>
             </div>
             <div class="p-6 grid grid-cols-2 gap-4">
                 <a href="{{ route('admin.inventory.create') }}"
-                    class="p-4 border border-stone-300 rounded-xl hover:bg-amber-50 hover:border-amber-200 transition-all flex flex-col items-center text-center gap-2 group">
+                    class="p-4 border-2 border-stone-200 rounded-xl hover:bg-amber-50 hover:border-amber-200 transition-all flex flex-col items-center text-center gap-2 group">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center group-hover:bg-white transition-colors shadow-sm">
                         <i class="ri-add-box-line text-xl text-amber-500"></i>
                     </div>
                     <span class="text-[10px] font-black uppercase tracking-widest text-stone-600">New Product</span>
                 </a>
                 <a href="{{ route('admin.suppliers.create') }}"
-                    class="p-4 border border-stone-300 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
+                    class="p-4 border-2 border-stone-200 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center group-hover:bg-white transition-colors shadow-sm">
                         <i class="ri-user-add-line text-xl text-stone-900"></i>
                     </div>
                     <span class="text-[10px] font-black uppercase tracking-widest text-stone-600">New Supplier</span>
                 </a>
                 <a href="{{ route('admin.categories.index') }}"
-                    class="p-4 border border-stone-300 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
+                    class="p-4 border-2 border-stone-200 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center group-hover:bg-white transition-colors shadow-sm">
                         <i class="ri-price-tag-3-line text-xl text-stone-500"></i>
                     </div>
                     <span class="text-[10px] font-black uppercase tracking-widest text-stone-600">Categories</span>
                 </a>
                 <a href="{{ url('/') }}" target="_blank"
-                    class="p-4 border border-stone-300 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
+                    class="p-4 border-2 border-stone-200 rounded-xl hover:bg-stone-50 transition-all flex flex-col items-center text-center gap-2 group">
                     <div class="w-10 h-10 rounded-lg bg-stone-50 flex items-center justify-center group-hover:bg-white transition-colors shadow-sm">
                         <i class="ri-external-link-line text-xl text-stone-500"></i>
                     </div>

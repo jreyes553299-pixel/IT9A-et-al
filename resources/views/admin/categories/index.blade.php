@@ -7,8 +7,8 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" x-data="{ main_image_type: 'link' }">
     <!-- Add Category Form -->
     <div class="lg:col-span-1">
-        <div class="bg-white p-8 rounded-2xl border border-stone-300 shadow-sm sticky top-8">
-            <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b border-stone-100 pb-4 mb-6">Create Category</h3>
+        <div class="bg-white p-8 rounded-2xl border border-stone-300 shadow-md sticky top-8">
+            <h3 class="text-sm font-bold text-stone-900 uppercase tracking-widest border-b-2 border-stone-100 pb-4 mb-6">Create Category</h3>
             <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
                 <div>
@@ -49,10 +49,10 @@
 
     <!-- Category List -->
     <div class="lg:col-span-2">
-        <div class="bg-white rounded-2xl border border-stone-300 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-2xl border border-stone-300 shadow-md overflow-hidden">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-stone-50/30">
+                    <tr class="bg-stone-100/50">
                         <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Category</th>
                         <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Slug</th>
                         <th class="px-8 py-5 text-[10px] font-black text-stone-500 uppercase tracking-[0.2em] border-b border-stone-300">Products</th>

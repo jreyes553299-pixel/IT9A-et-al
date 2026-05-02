@@ -22,7 +22,7 @@
             :class="sidebarOpen ? 'w-64' : 'w-20'"
         >
             <!-- Logo Area -->
-            <div class="h-20 flex items-center px-6 border-b border-white/5">
+            <div class="h-20 flex items-center px-6 border-b border-white/10">
                 <div class="flex items-center gap-3">
                     <img src="{{ asset('images/logo.png') }}" class="w-8 h-8 rounded-full object-cover flex-shrink-0" alt="Logo">
                     <span class="font-bold tracking-tight transition-opacity duration-300" x-show="sidebarOpen">NEXSTYLE</span>
@@ -75,7 +75,7 @@
                     <span class="text-sm font-medium" x-show="sidebarOpen">Sales Trends</span>
                 </a>
 
-                <div class="pt-4 mt-4 border-t border-white/5">
+                <div class="pt-4 mt-4 border-t border-white/10">
                     <p class="text-[10px] font-bold text-stone-500 uppercase tracking-widest px-2 mb-4" x-show="sidebarOpen">System</p>
                     
                     <a href="{{ url('/') }}" target="_blank" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-stone-400 hover:bg-white/5 hover:text-white transition-colors">
@@ -97,7 +97,7 @@
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
-            <header class="h-20 bg-white border-b border-stone-200 flex items-center justify-between px-8 flex-shrink-0">
+            <header class="h-20 bg-white border-b border-stone-300 shadow-md flex items-center justify-between px-8 flex-shrink-0">
                 <div class="flex items-center gap-4">
                     <button @click="sidebarOpen = !sidebarOpen" class="w-10 h-10 flex items-center justify-center text-stone-400 hover:bg-stone-50 rounded-lg transition-colors">
                         <i class="ri-menu-2-line text-xl"></i>
@@ -110,7 +110,7 @@
                         <i class="ri-notification-3-line text-xl text-stone-400"></i>
                         <span class="absolute -top-1 -right-1 w-2 h-2 bg-amber-500 rounded-full"></span>
                     </div>
-                    <div class="flex items-center gap-3 pl-6 border-l border-stone-200">
+                    <div class="flex items-center gap-3 pl-6 border-l border-stone-300">
                         <div class="text-right">
                             <p class="text-sm font-bold text-stone-900">{{ optional(Auth::user())->first_name ?? 'Admin' }}</p>
                             <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Administrator</p>

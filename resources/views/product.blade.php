@@ -94,7 +94,7 @@
                             :class="selectedColor === '{{ $color['name'] }}' ? 'border-amber-500 scale-110 shadow-lg shadow-amber-500/20' : 'border-transparent hover:border-gray-200'"
                             title="{{ $color['name'] }}"
                         >
-                            <div class="w-full h-full rounded-full border border-stone-200" style="background-color: {{ $color['hex'] }};"></div>
+                            <div class="w-full h-full rounded-full border border-stone-300" style="background-color: {{ $color['hex'] }};"></div>
                         </button>
                         @endforeach
                     </div>
@@ -125,9 +125,9 @@
                 <div>
                     <label class="block text-xs font-bold tracking-widest uppercase text-gray-500 mb-3">Quantity</label>
                     <div class="flex items-center gap-0" x-data="{ qty: 1 }">
-                        <button type="button" @click="if(qty > 1) qty--" class="w-11 h-11 flex items-center justify-center border border-stone-200 rounded-l-lg text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-subtract-line"></i></button>
-                        <input x-model="qty" max="{{ $product->stock }}" class="w-16 h-11 border-t border-b border-stone-200 text-center text-sm font-bold text-gray-900 focus:outline-none" type="number" name="quantity">
-                        <button type="button" @click="if(qty < {{ $product->stock }}) qty++" class="w-11 h-11 flex items-center justify-center border border-stone-200 rounded-r-lg text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-add-line"></i></button>
+                        <button type="button" @click="if(qty > 1) qty--" class="w-11 h-11 flex items-center justify-center border border-stone-300 rounded-l-lg text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-subtract-line"></i></button>
+                        <input x-model="qty" max="{{ $product->stock }}" class="w-16 h-11 border-t border-b border-stone-300 text-center text-sm font-bold text-gray-900 focus:outline-none" type="number" name="quantity">
+                        <button type="button" @click="if(qty < {{ $product->stock }}) qty++" class="w-11 h-11 flex items-center justify-center border border-stone-300 rounded-r-lg text-gray-600 hover:bg-stone-50 transition-colors"><i class="ri-add-line"></i></button>
                     </div>
                 </div>
 
@@ -141,13 +141,10 @@
                         <i class="ri-forbid-line text-lg"></i>Out of Stock
                     </button>
                     @endif
-                    <button type="button" class="w-14 h-14 flex items-center justify-center border border-stone-200 rounded-xl text-gray-400 hover:text-red-500 hover:border-red-100 hover:bg-red-50 transition-all">
-                        <i class="ri-heart-line text-xl"></i>
-                    </button>
                 </div>
             </form>
 
-            <div class="flex flex-wrap gap-4 mt-7 pt-7 border-t border-stone-100">
+            <div class="flex flex-wrap gap-4 mt-7 pt-7 border-t border-stone-200">
                 <div class="flex items-center gap-2 text-xs text-gray-500"><div class="w-5 h-5 flex items-center justify-center"><i class="ri-truck-line text-amber-500"></i></div>Free shipping over $150</div>
                 <div class="flex items-center gap-2 text-xs text-gray-500"><div class="w-5 h-5 flex items-center justify-center"><i class="ri-shield-check-line text-amber-500"></i></div>Secure checkout</div>
                 <div class="flex items-center gap-2 text-xs text-gray-500"><div class="w-5 h-5 flex items-center justify-center"><i class="ri-refresh-line text-amber-500"></i></div>30-day returns</div>
