@@ -16,11 +16,6 @@ use App\Http\Controllers\Admin\PurchaseOrderController;
 use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\AccountController;
 
-Route::get('/run-migrations-render', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-    return "Migrations executed: " . nl2br(\Illuminate\Support\Facades\Artisan::output());
-});
-
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/gallery', [GalleryController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');

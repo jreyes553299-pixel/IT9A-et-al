@@ -41,7 +41,7 @@
   
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-    <body class="antialiased font-sans text-gray-900 bg-white" x-data="{ scrolled: false, mobileMenuOpen: false, isHome: {{ request()->is('/') ? 'true' : 'false' }} }" @scroll.window="scrolled = (window.pageYOffset > 50)">
+    <body class="antialiased font-sans text-gray-900 bg-white" x-data="{ scrolled: false, mobileMenuOpen: false, isDarkPage: {{ (request()->is('/') || request()->is('gallery*') || request()->is('account*') || request()->is('cart*')) ? 'true' : 'false' }} }" @scroll.window="scrolled = (window.pageYOffset > 50)">
     <div class="min-h-screen bg-white">
         <header 
             class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -61,11 +61,11 @@
                 <div class="hidden sm:block">
                   <span
                     class="font-bold text-base lg:text-lg tracking-tight transition-colors"
-                    :class="(!isHome || scrolled) ? 'text-gray-900' : 'text-white'"
+                    :class="(!isDarkPage || scrolled) ? 'text-gray-900' : 'text-white'"
                     >NEXSTYLE</span
                   ><span
                     class="block text-xs tracking-widest transition-colors"
-                    :class="(!isHome || scrolled) ? 'text-gray-500' : 'text-white/70'"
+                    :class="(!isDarkPage || scrolled) ? 'text-gray-500' : 'text-white/70'"
                     >FASHION &amp; TECH</span
                   >
                 </div></a
@@ -73,25 +73,25 @@
               <nav class="hidden md:flex items-center gap-8">
                 <a
                   class="text-sm font-medium tracking-wide transition-colors whitespace-nowrap hover:opacity-70 {{ request()->is('/') ? 'border-b-2 border-current pb-0.5' : '' }}"
-                  :class="(!isHome || scrolled) ? 'text-gray-900 {{ request()->is('/') ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request()->is('/') ? 'border-white' : 'border-transparent' }}'"
+                  :class="(!isDarkPage || scrolled) ? 'text-gray-900 {{ request()->is('/') ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request()->is('/') ? 'border-white' : 'border-transparent' }}'"
                   href="{{ url('/') }}"
                   data-discover="true"
                   >Home</a
                 ><a
                   class="text-sm font-medium tracking-wide transition-colors whitespace-nowrap hover:opacity-70 {{ request()->is('gallery') ? 'border-b-2 border-current pb-0.5' : '' }}"
-                  :class="(!isHome || scrolled) ? 'text-gray-900 {{ request()->is('gallery') ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request()->is('gallery') ? 'border-white' : 'border-transparent' }}'"
+                  :class="(!isDarkPage || scrolled) ? 'text-gray-900 {{ request()->is('gallery') ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request()->is('gallery') ? 'border-white' : 'border-transparent' }}'"
                   href="{{ url('/gallery') }}"
                   data-discover="true"
                   >Gallery</a
                 ><a
                   class="text-sm font-medium tracking-wide transition-colors whitespace-nowrap hover:opacity-70 {{ request('category') === 'fashion' ? 'border-b-2 border-current pb-0.5' : '' }}"
-                  :class="(!isHome || scrolled) ? 'text-gray-900 {{ request('category') === 'fashion' ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request('category') === 'fashion' ? 'border-white' : 'border-transparent' }}'"
+                  :class="(!isDarkPage || scrolled) ? 'text-gray-900 {{ request('category') === 'fashion' ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request('category') === 'fashion' ? 'border-white' : 'border-transparent' }}'"
                   href="{{ url('/gallery?category=fashion') }}"
                   data-discover="true"
                   >Fashion</a
                 ><a
                   class="text-sm font-medium tracking-wide transition-colors whitespace-nowrap hover:opacity-70 {{ request('category') === 'tech' ? 'border-b-2 border-current pb-0.5' : '' }}"
-                  :class="(!isHome || scrolled) ? 'text-gray-900 {{ request('category') === 'tech' ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request('category') === 'tech' ? 'border-white' : 'border-transparent' }}'"
+                  :class="(!isDarkPage || scrolled) ? 'text-gray-900 {{ request('category') === 'tech' ? 'border-gray-900' : 'border-transparent' }}' : 'text-white {{ request('category') === 'tech' ? 'border-white' : 'border-transparent' }}'"
                   href="{{ url('/gallery?category=tech') }}"
                   data-discover="true"
                   >Tech</a
@@ -100,7 +100,7 @@
                 <div class="hidden md:flex items-center gap-4">
                     <a
                         class="transition-colors"
-                        :class="(!isHome || scrolled) ? 'text-gray-600 hover:text-gray-900' : 'text-white/80 hover:text-white'"
+                        :class="(!isDarkPage || scrolled) ? 'text-gray-600 hover:text-gray-900' : 'text-white/80 hover:text-white'"
                         href="{{ url('/gallery') }}"
                         data-discover="true"
                         ><div class="w-10 h-10 flex items-center justify-center">
@@ -108,7 +108,7 @@
                     ></a>
                     <a
                         class="relative transition-colors"
-                        :class="(!isHome || scrolled) ? 'text-gray-600 hover:text-gray-900' : 'text-white/80 hover:text-white'"
+                        :class="(!isDarkPage || scrolled) ? 'text-gray-600 hover:text-gray-900' : 'text-white/80 hover:text-white'"
                         href="{{ route('cart') }}"
                         data-discover="true"
                         ><div class="w-10 h-10 flex items-center justify-center">
@@ -122,7 +122,7 @@
                     @guest
                     <a
                         class="flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-md transition-colors whitespace-nowrap"
-                        :class="(!isHome || scrolled) ? 'bg-stone-900 text-white hover:bg-stone-800' : 'bg-white/15 text-white hover:bg-white/25 border border-white/30'"
+                        :class="(!isDarkPage || scrolled) ? 'bg-stone-900 text-white hover:bg-stone-800' : 'bg-white/15 text-white hover:bg-white/25 border border-white/30'"
                         href="{{ route('login') }}"
                         data-discover="true"
                         ><i class="ri-user-line text-base"></i>
@@ -143,10 +143,10 @@
                                     {{ strtoupper(substr(Auth::user()->first_name, 0, 1)) }}
                                 @endif
                             </div>
-                            <span class="text-sm font-medium transition-colors" :class="(!isHome || scrolled) ? 'text-stone-900' : 'text-white'">
+                            <span class="text-sm font-medium transition-colors" :class="(!isDarkPage || scrolled) ? 'text-stone-900' : 'text-white'">
                                 {{ Auth::user()->email }}
                             </span>
-                            <i class="ri-arrow-down-s-line text-lg transition-transform" :class="[open ? 'rotate-180' : '', (!isHome || scrolled) ? 'text-stone-400' : 'text-white/60']"></i>
+                            <i class="ri-arrow-down-s-line text-lg transition-transform" :class="[open ? 'rotate-180' : '', (!isDarkPage || scrolled) ? 'text-stone-400' : 'text-white/60']"></i>
                         </button>
                         
                         <div
@@ -198,7 +198,7 @@
               <button
                 @click="mobileMenuOpen = true"
                 class="md:hidden w-9 h-9 flex items-center justify-center transition-colors"
-                :class="(!isHome || scrolled) ? 'text-gray-900' : 'text-white'"
+                :class="(!isDarkPage || scrolled) ? 'text-gray-900' : 'text-white'"
               >
                 <i class="text-xl ri-menu-line"></i>
               </button>
