@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/account/address', [AccountController::class, 'updateAddress'])->name('account.address');
     Route::put('/account/profile', [AccountController::class, 'updateProfile'])->name('account.profile');
     Route::put('/account/security', [AccountController::class, 'updateSecurity'])->name('account.security');
+    Route::post('/account/review', [AccountController::class, 'storeReview'])->name('account.review');
+    Route::post('/account/order-again/{order}', [AccountController::class, 'orderAgain'])->name('account.order-again');
     
     Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');

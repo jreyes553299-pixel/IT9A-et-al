@@ -23,4 +23,20 @@ class Product extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        if (array_key_exists('reviews_avg_rating', $this->attributes)) {
+            return $this->attributes['reviews_avg_rating'] ?? 0;
+        }
+        if ($this->relationLoaded('reviews')) {
+            return $this->reviews->avg('rating') ?? 0;
+        }
+        return $this->reviews()->avg('rating') ?? 0;
+    }
 }

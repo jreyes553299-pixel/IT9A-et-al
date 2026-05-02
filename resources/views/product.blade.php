@@ -54,13 +54,15 @@
             
             <div class="flex items-center gap-2 mb-5">
                 <div class="flex items-center gap-0.5">
-                    <i class="text-sm ri-star-fill text-amber-400"></i>
-                    <i class="text-sm ri-star-fill text-amber-400"></i>
-                    <i class="text-sm ri-star-fill text-amber-400"></i>
-                    <i class="text-sm ri-star-fill text-amber-400"></i>
-                    <i class="text-sm ri-star-line text-gray-300"></i>
+                    @for($i = 1; $i <= 5; $i++)
+                        @if($i <= round($product->average_rating))
+                            <i class="text-sm ri-star-fill text-amber-400"></i>
+                        @else
+                            <i class="text-sm ri-star-line text-gray-300"></i>
+                        @endif
+                    @endfor
                 </div>
-                <span class="text-sm font-semibold text-gray-700">4.8</span>
+                <span class="text-sm font-semibold text-gray-700">{{ number_format($product->average_rating, 1) }}</span>
                 <span class="text-sm text-gray-400">({{ $product->reviews_count }} reviews)</span>
             </div>
 
@@ -150,6 +152,72 @@
                 <div class="flex items-center gap-2 text-xs text-gray-500"><div class="w-5 h-5 flex items-center justify-center"><i class="ri-refresh-line text-amber-500"></i></div>30-day returns</div>
             </div>
         </div>
+    </div>
+
+    <!-- Product Reviews -->
+    <div class="mt-16 pt-10 border-t border-stone-200">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Customer Reviews</h2>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-0.5">
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= round($product->average_rating))
+                                <i class="text-lg ri-star-fill text-amber-400"></i>
+                            @else
+                                <i class="text-lg ri-star-line text-gray-300"></i>
+                            @endif
+                        @endfor
+                    </div>
+                    <span class="text-lg font-bold text-gray-900">{{ number_format($product->average_rating, 1) }}</span>
+                    <span class="text-sm text-gray-400">Based on {{ $product->reviews_count }} reviews</span>
+                </div>
+            </div>
+        </div>
+
+        @if($product->reviews->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach($product->reviews as $review)
+            <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center overflow-hidden">
+                            @if(optional($review->user)->avatar)
+                                <img src="{{ asset('storage/' . $review->user->avatar) }}" class="w-full h-full object-cover">
+                            @else
+                                <span class="text-stone-500 font-bold">{{ strtoupper(substr(optional($review->user)->first_name ?? 'A', 0, 1)) }}</span>
+                            @endif
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">{{ optional($review->user)->first_name ?? 'Anonymous' }} {{ optional($review->user)->last_name ?? '' }}</p>
+                            <p class="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{{ $review->created_at->format('M d, Y') }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-0.5">
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= $review->rating)
+                                <i class="text-sm ri-star-fill text-amber-400"></i>
+                            @else
+                                <i class="text-sm ri-star-line text-gray-300"></i>
+                            @endif
+                        @endfor
+                    </div>
+                </div>
+                @if($review->comment)
+                <p class="text-stone-600 text-sm leading-relaxed">"{{ $review->comment }}"</p>
+                @endif
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="bg-stone-50 rounded-2xl p-10 text-center border border-stone-200">
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-stone-300 shadow-sm">
+                <i class="ri-chat-3-line text-3xl"></i>
+            </div>
+            <p class="text-gray-900 font-bold mb-2">No reviews yet</p>
+            <p class="text-sm text-stone-500">Be the first to review this product after your purchase!</p>
+        </div>
+        @endif
     </div>
 
     <!-- Related Products -->

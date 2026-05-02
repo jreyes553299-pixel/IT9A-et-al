@@ -13,7 +13,9 @@ class AccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id)->with('items.product')->latest()->get();
+        $orders = Order::where('user_id', $user->id)->with(['items.product.reviews' => function($q) use ($user) {
+            $q->where('user_id', $user->id);
+        }])->latest()->get();
         return view('account', compact('user', 'orders'));
     }
 
@@ -75,5 +77,64 @@ class AccountController extends Controller
         ]);
 
         return redirect()->route('account', ['tab' => 'Security'])->with('success', 'Password updated successfully!');
+    }
+
+    public function storeReview(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
+        ]);
+
+        \App\Models\ProductReview::updateOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'product_id' => $validated['product_id']
+            ],
+            [
+                'rating' => $validated['rating'],
+                'comment' => $validated['comment']
+            ]
+        );
+
+        return redirect()->route('account', ['tab' => 'Orders'])->with('success', 'Thank you for your review!');
+    }
+
+    public function orderAgain(Order $order)
+    {
+        if ($order->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $cart = session()->get('cart', []);
+        
+        foreach ($order->items as $item) {
+            $product = $item->product;
+            if (!$product || $product->stock < 1) continue;
+            
+            $cartItemId = $product->id . '_' . ($item->color ?? 'no_color') . '_' . ($item->size ?? 'no_size');
+            
+            $currentQuantity = isset($cart[$cartItemId]) ? $cart[$cartItemId]['quantity'] : 0;
+            $newQuantity = $currentQuantity + $item->quantity;
+
+            if ($newQuantity <= $product->stock) {
+                if (isset($cart[$cartItemId])) {
+                    $cart[$cartItemId]['quantity'] = $newQuantity;
+                } else {
+                    $cart[$cartItemId] = [
+                        'product_id' => $product->id,
+                        'quantity' => $item->quantity,
+                        'color' => $item->color,
+                        'size' => $item->size,
+                        'price' => $product->price
+                    ];
+                }
+            }
+        }
+        
+        session()->put('cart', $cart);
+
+        return redirect()->route('checkout')->with('success', 'Items from your previous order have been added to your cart.');
     }
 }

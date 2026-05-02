@@ -103,12 +103,14 @@
                     <h3 class="text-sm font-semibold text-gray-900 mt-1 mb-2 leading-snug">{{ $product->name }}</h3>
                     
                     <div class="flex items-center gap-1 mb-2">
-                        <i class="text-xs ri-star-fill text-amber-400"></i>
-                        <i class="text-xs ri-star-fill text-amber-400"></i>
-                        <i class="text-xs ri-star-fill text-amber-400"></i>
-                        <i class="text-xs ri-star-fill text-amber-400"></i>
-                        <i class="text-xs ri-star-line text-gray-300"></i>
-                        <span class="text-xs text-gray-400 ml-1">({{ $product->reviews_count }})</span>
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= round($product->average_rating))
+                                <i class="text-xs ri-star-fill text-amber-400"></i>
+                            @else
+                                <i class="text-xs ri-star-line text-gray-300"></i>
+                            @endif
+                        @endfor
+                        <span class="text-xs text-gray-400 ml-1">({{ $product->reviews_count }} reviews)</span>
                     </div>
                     
                     <div class="flex items-center gap-2">

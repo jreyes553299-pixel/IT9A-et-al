@@ -448,9 +448,18 @@
                                     </div>
                                     @if($order->status === 'delivered')
                                     <div class="flex items-center gap-3">
-                                        <a href="{{ url('/checkout') }}" class="text-xs font-bold text-white bg-stone-900 hover:bg-stone-800 px-6 py-2.5 rounded-lg shadow-lg shadow-stone-900/10 transition-all flex items-center gap-2 active:scale-95">
-                                            Order Again <i class="ri-refresh-line text-sm"></i>
-                                        </a>
+                                        <form method="POST" action="{{ route('account.order-again', $order->id) }}" class="m-0 p-0">
+                                            @csrf
+                                            <button type="submit" class="text-xs font-bold text-white bg-stone-900 hover:bg-stone-800 px-6 py-2.5 rounded-lg shadow-lg shadow-stone-900/10 transition-all flex items-center gap-2 active:scale-95">
+                                                Order Again <i class="ri-refresh-line text-sm"></i>
+                                            </button>
+                                        </form>
+                                        @php
+                                            $hasReviewedAny = $order->items->filter(fn($i) => $i->product && $i->product->reviews->count() > 0)->count() > 0;
+                                        @endphp
+                                        <button @click="$dispatch('open-review-modal', { items: {{ $order->items->filter(fn($i) => $i->product)->map(function($i) { $r = $i->product->reviews->first(); return ['id' => $i->product_id, 'name' => $i->product_name, 'image' => $i->product->image_url, 'rating' => $r ? $r->rating : 5, 'comment' => $r ? $r->comment : '']; })->values()->toJson() }} })" class="text-xs font-bold text-stone-900 bg-amber-400 hover:bg-amber-300 px-6 py-2.5 rounded-lg shadow-lg shadow-amber-500/20 transition-all flex items-center gap-2 active:scale-95">
+                                            {{ $hasReviewedAny ? 'Edit Reviews' : 'Leave a Review' }} <i class="ri-star-fill text-sm"></i>
+                                        </button>
                                     </div>
                                     @else
                                     <div class="flex items-center gap-3 opacity-50 cursor-not-allowed">
@@ -579,6 +588,73 @@
                     </div>
                 </div>
         </div>
+    </div>
+</div>
+
+<!-- Review Modal -->
+<div x-data="{ 
+        open: false, 
+        items: [], 
+        activeProduct: null,
+        rating: 5,
+        comment: ''
+    }" 
+    @open-review-modal.window="
+        open = true; 
+        items = $event.detail.items; 
+        if(items.length > 0) {
+            activeProduct = items[0];
+            rating = activeProduct.rating;
+            comment = activeProduct.comment;
+        }
+    "
+    x-show="open" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/80 backdrop-blur-sm"
+    x-cloak>
+    <div @click.away="open = false" class="bg-white rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative">
+        <div class="p-6 border-b border-stone-200 flex justify-between items-center">
+            <h3 class="text-lg font-bold text-stone-900">Leave a Review</h3>
+            <button @click="open = false" class="text-stone-400 hover:text-stone-600"><i class="ri-close-line text-2xl"></i></button>
+        </div>
+        <form method="POST" action="{{ route('account.review') }}" class="p-6">
+            @csrf
+            <input type="hidden" name="product_id" :value="activeProduct?.id">
+            
+            <div class="flex items-center gap-4 mb-6">
+                <img :src="activeProduct?.image" class="w-16 h-16 rounded-xl border-2 border-stone-100 object-cover">
+                <div class="flex-1 min-w-0">
+                    <h4 class="font-bold text-stone-900 truncate" x-text="activeProduct?.name"></h4>
+                    <div class="flex items-center gap-2 mt-2 overflow-x-auto pb-2 scrollbar-hide">
+                        <template x-for="item in items">
+                            <button type="button" @click="activeProduct = item; rating = item.rating; comment = item.comment" 
+                                class="flex-shrink-0 text-[10px] font-bold px-3 py-1.5 rounded-md border transition-colors truncate max-w-[120px]"
+                                :class="activeProduct?.id === item.id ? 'bg-amber-500 text-stone-900 border-amber-500' : 'bg-white text-stone-500 border-stone-200 hover:border-amber-500'">
+                                <span x-text="item.name"></span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-2">Rating</label>
+                <div class="flex items-center gap-2">
+                    <template x-for="i in 5">
+                        <button type="button" @click="rating = i" class="text-2xl transition-colors"
+                            :class="i <= rating ? 'text-amber-400 ri-star-fill' : 'text-stone-300 ri-star-line'">
+                        </button>
+                    </template>
+                </div>
+                <input type="hidden" name="rating" :value="rating">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-2">Comment (Optional)</label>
+                <textarea name="comment" x-model="comment" rows="3" class="w-full border border-stone-200 rounded-xl p-4 text-sm focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-all outline-none" placeholder="What did you think about this product?"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-stone-900/10">Submit Review</button>
+        </form>
     </div>
 </div>
 @endsection

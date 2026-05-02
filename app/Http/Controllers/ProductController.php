@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-        $product = Product::with('category')->findOrFail($id);
+        $product = Product::with(['category', 'reviews.user'])->findOrFail($id);
         
         // Get related products from same category, excluding current
         $relatedProducts = Product::where('category_id', $product->category_id)
